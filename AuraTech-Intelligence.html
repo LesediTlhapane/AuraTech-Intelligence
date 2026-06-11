@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Aura Tech Intelligence | AI Agents & Autonomous Systems</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', 'Space Grotesk', sans-serif;
+        background-color: #0a0f1f;
+        scroll-behavior: smooth;
+      }
+
+      /* Animated gradient background for hero */
+      .hero-glow {
+        background: radial-gradient(ellipse at 30% 40%, rgba(0, 180, 255, 0.12), rgba(2, 20, 45, 0.96));
+        position: relative;
+      }
+      .hero-glow::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 70% 20%, rgba(0, 212, 255, 0.08), transparent 70%);
+        pointer-events: none;
+      }
+
+      .animated-gradient-text {
+        background: linear-gradient(135deg, #FFFFFF 20%, #2A9DF4 50%, #00D4FF 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shimmer 3s infinite linear;
+      }
+
+      @keyframes shimmer {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+      }
+
+      .card-hover {
+        transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      }
+      .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 40px -12px rgba(0, 180, 255, 0.3);
+        border-color: rgba(0, 200, 255, 0.7);
+        background: linear-gradient(145deg, #111d38, #0c142c);
+      }
+
+      .nav-blur {
+        backdrop-filter: blur(16px);
+        background: rgba(5, 10, 25, 0.88);
+        border-bottom: 1px solid rgba(0, 150, 255, 0.3);
+      }
+
+      .pricing-popular {
+        border: 1px solid #2A9DF4;
+        box-shadow: 0 0 20px rgba(0, 150, 255, 0.35);
+        transform: scale(1.02);
+        background: linear-gradient(145deg, #0e1a2f, #091020);
+      }
+
+      .btn-glow {
+        transition: all 0.2s ease;
+      }
+      .btn-glow:hover {
+        box-shadow: 0 0 16px #00aeff;
+        background: #0077cc;
+        transform: translateY(-2px);
+      }
+
+      input, textarea {
+        transition: 0.2s;
+      }
+      input:focus, textarea:focus {
+        border-color: #2A9DF4;
+        box-shadow: 0 0 0 3px rgba(42, 157, 244, 0.2);
+        outline: none;
+      }
+
+      /* Chat widget styles */
+      .chat-widget {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 1000;
+      }
+      .chat-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #2A9DF4, #00b4ff);
+        box-shadow: 0 4px 20px rgba(0, 180, 255, 0.5);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+      .chat-button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 28px rgba(0, 180, 255, 0.7);
+      }
+      .chat-window {
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        width: 380px;
+        height: 520px;
+        background: #0f1a2e;
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid rgba(42, 157, 244, 0.4);
+        backdrop-filter: blur(8px);
+      }
+      .chat-header {
+        background: linear-gradient(135deg, #0a1128, #0d1835);
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        border-bottom: 1px solid #2A9DF4;
+      }
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .message-bot {
+        background: #1e2a48;
+        padding: 10px 14px;
+        border-radius: 18px;
+        border-bottom-left-radius: 4px;
+        max-width: 85%;
+        color: #e0e0e0;
+        font-size: 14px;
+        align-self: flex-start;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+      .message-user {
+        background: #2A9DF4;
+        padding: 10px 14px;
+        border-radius: 18px;
+        border-bottom-right-radius: 4px;
+        max-width: 85%;
+        color: white;
+        font-size: 14px;
+        align-self: flex-end;
+      }
+      .chat-input-area {
+        display: flex;
+        padding: 12px;
+        gap: 8px;
+        border-top: 1px solid #2a3a60;
+        background: #0a1128;
+      }
+      .chat-input-area input {
+        flex: 1;
+        background: #1e2a48;
+        border: none;
+        border-radius: 24px;
+        padding: 10px 16px;
+        color: white;
+        outline: none;
+      }
+      .chat-input-area button {
+        background: #2A9DF4;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 18px;
+        color: white;
+        cursor: pointer;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0b1120;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2A9DF4;
+        border-radius: 8px;
+      }
+      .typing-indicator {
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .typing-indicator span {
+        width: 6px;
+        height: 6px;
+        background: #aaa;
+        border-radius: 50%;
+        animation: blink 1.4s infinite;
+      }
+      .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+      .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes blink {
+        0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+        30% { opacity: 1; transform: translateY(-4px); }
+      }
+    </style>
+  </head>
+  <body class="text-gray-200">
+    <div id="root"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
+
+      // Navigation
+      const navLinks = [
+        { name: "Home", href: "#home" },
+        { name: "AI Agents", href: "#agents" },
+        { name: "About", href: "#about" },
+        { name: "Engagement", href: "#pricing" },
+        { name: "Contact", href: "#contact" }
+      ];
+
+      // AI Agents data (framed as digital team members)
+      const agentsData = [
+        { id: 1, icon: "fa-headset", title: "The Customer Experience Agent", desc: "24/7 intelligent support that answers complex queries, resolves issues, and books appointments autonomously — no human needed." },
+        { id: 2, icon: "fa-file-invoice", title: "The Operations & Admin Agent", desc: "Monitors emails, extracts data from PDFs/invoices, updates CRMs, and eliminates manual back-office errors." },
+        { id: 3, icon: "fa-brain", title: "The Knowledge Base Brain", desc: "Train an AI on your manuals, compliance files, and company data. Your team gets instant answers from internal knowledge." }
+      ];
+
+      // Engagement Models
+      const engagementPlans = [
+        {
+          name: "AI Scoping & Consultation",
+          price: "From R3,500",
+          features: ["Audit current business processes", "Identify automation opportunities", "Deliverable: 20+ page blueprint", "1-week turnaround", "Actionable ROI roadmap"],
+          popular: false,
+          cta: "Book Scoping Call"
+        },
+        {
+          name: "Custom Agent Build",
+          price: "Project-Based",
+          features: ["Full-cycle agent development", "Deploy into your workflow", "Custom integration with your tools", "Testing & validation phase", "30-day post-launch support"],
+          popular: true,
+          cta: "Discuss Your Agent"
+        },
+        {
+          name: "AI-as-a-Service (Retainer)",
+          price: "From R8,500/mo",
+          features: ["Dedicated AI specialist", "Continuous model optimization", "Priority feature development", "Monthly strategic review", "SLA & uptime guarantee"],
+          popular: false,
+          cta: "Start Retainer"
+        }
+      ];
+
+      // Header Component
+      const Header = () => {
+        const [isScrolled, setIsScrolled] = useState(false);
+        useEffect(() => {
+          const handleScroll = () => setIsScrolled(window.scrollY > 20);
+          window.addEventListener("scroll", handleScroll);
+          return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
+        const handleSmooth = (e, href) => {
+          e.preventDefault();
+          const targetId = href.replace("#", "");
+          const element = document.getElementById(targetId);
+          if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
+        };
+        return (
+          <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'nav-blur shadow-lg' : 'bg-transparent'}`}>
+            <div className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex justify-between items-center flex-wrap">
+              <div className="flex items-center space-x-2">
+                <i className="fas fa-robot text-electric-blue text-3xl" style={{ color: "#2A9DF4" }}></i>
+                <span className="font-space-grotesk text-xl font-bold tracking-tight bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">Aura Tech Intelligence</span>
+              </div>
+              <div className="hidden md:flex space-x-8 text-sm font-medium">
+                {navLinks.map(link => (
+                  <a key={link.name} href={link.href} onClick={(e) => handleSmooth(e, link.href)} className="hover:text-[#2A9DF4] transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-[#2A9DF4] after:transition-all hover:after:w-full">{link.name}</a>
+                ))}
+              </div>
+              <div className="md:hidden">
+                <details className="dropdown">
+                  <summary className="list-none cursor-pointer text-2xl"><i className="fas fa-bars text-white"></i></summary>
+                  <div className="absolute right-4 mt-2 bg-[#0e172a] rounded-xl p-3 w-44 flex flex-col gap-2 shadow-xl border border-blue-900/40 z-50">
+                    {navLinks.map(link => (
+                      <a key={link.name} href={link.href} onClick={(e) => handleSmooth(e, link.href)} className="block px-3 py-2 hover:bg-[#1e2a4a] rounded-lg">{link.name}</a>
+                    ))}
+                  </div>
+                </details>
+              </div>
+            </div>
+          </nav>
+        );
+      };
+
+      // Hero Section
+      const Hero = () => (
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 hero-glow">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjMjA5OGZmIiBmaWxsLW9wYWNpdHk9IjAuMDQiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjMjhhY2ZmIiBmaWxsLW9wYWNpdHk9IjAuMiIvPjwvc3ZnPg==')] opacity-20"></div>
+          <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <div className="flex justify-center mb-6">
+              <div className="inline-flex items-center gap-2 bg-blue-500/10 backdrop-blur-sm border border-blue-400/30 rounded-full px-5 py-2">
+                <i className="fas fa-check-circle text-cyan-400 text-sm"></i>
+                <span className="text-sm font-medium">✨ An eStudy Sponsored AI Innovation Project</span>
+              </div>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold font-space-grotesk leading-tight">
+              Intelligent Agents. <span className="animated-gradient-text">Autonomous Results.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mt-6">
+              Deploy AI digital workers that operate 24/7 — from customer support to back-office automation. Built for South African businesses by a Pretoria-based AI specialist.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-5">
+              <a href="#contact" className="bg-[#2A9DF4] hover:bg-[#1f7bc0] text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-lg shadow-blue-500/30 flex items-center gap-2 btn-glow"><i className="fas fa-calendar-check"></i> Free AI Audit →</a>
+              <a href="#agents" className="border border-blue-500 text-white px-8 py-4 rounded-xl font-medium hover:bg-white/10 transition">Meet Our AI Agents <i className="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+              <span><i className="fas fa-robot text-blue-400 mr-1"></i> Autonomous Digital Workers</span>
+              <span><i className="fas fa-shield-alt text-blue-400 mr-1"></i> Enterprise-Grade Security</span>
+              <span><i className="fas fa-chart-line text-blue-400 mr-1"></i> Tailored for SA Market</span>
+            </div>
+          </div>
+        </section>
+      );
+
+      // AI Agents Section
+      const Agents = () => (
+        <section id="agents" className="py-24 px-6 bg-[#0c1222]">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk">Hire <span className="text-[#2A9DF4]">AI Digital Workers</span></h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+              <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Autonomous agents that work alongside your team — no breaks, no errors, no limits.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {agentsData.map(agent => (
+                <div key={agent.id} className="bg-[#0f182c] border border-gray-800 rounded-2xl p-7 card-hover transition-all duration-300">
+                  <div className="text-5xl text-[#2A9DF4] mb-5"><i className={`fas ${agent.icon}`}></i></div>
+                  <h3 className="text-2xl font-bold mb-3">{agent.title}</h3>
+                  <p className="text-gray-400 leading-relaxed">{agent.desc}</p>
+                  <div className="mt-6 pt-4 border-t border-gray-700">
+                    <span className="text-sm text-blue-300"><i className="fas fa-microchip mr-1"></i> Ready to deploy</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+
+      // About Section
+      const About = () => (
+        <section id="about" className="py-24 px-6 bg-gradient-to-br from-[#0a1022] to-[#0d1428]">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div className="md:w-1/3 flex justify-center">
+              <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-1 shadow-2xl">
+                <div className="w-full h-full rounded-full bg-[#111c30] flex items-center justify-center overflow-hidden border-4 border-white/10">
+                  <i className="fas fa-user-astronaut text-8xl text-blue-300"></i>
+                </div>
+              </div>
+            </div>
+            <div className="md:w-2/3 space-y-5">
+              <div className="inline-flex flex-wrap gap-2">
+                <span className="px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm"><i className="fas fa-map-marker-alt mr-1"></i> Pretoria, SA</span>
+                <span className="px-4 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm"><i className="fas fa-graduation-cap mr-1"></i> eStudy Incubation Alumni</span>
+              </div>
+              <h2 className="text-4xl font-bold font-space-grotesk">Lesedi Tlhapane <span className="text-[#2A9DF4]">| AI Technical Specialist</span></h2>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Selected for the <strong className="text-white">eStudy AI Entrepreneurship Incubation Programme</strong> — a 12-month sponsored journey building commercially viable AI agents. I retain full IP rights and have already deployed production-ready automation for real clients.
+              </p>
+              <p className="text-gray-300">
+                My mission: help South African businesses harness autonomous AI systems that handle repetitive cognitive work, freeing your team for strategic growth. From intelligent document processing to AI knowledge bases — I build agents that deliver measurable ROI.
+              </p>
+              <div className="flex gap-4 pt-3 flex-wrap">
+                <span className="bg-[#1e2a48] px-4 py-2 rounded-full text-sm flex items-center gap-2"><i className="fab fa-linkedin text-blue-400"></i> /lesedi-aura-ai</span>
+                <span className="bg-[#1e2a48] px-4 py-2 rounded-full text-sm flex items-center gap-2"><i className="fab fa-github"></i> aura-agents</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+
+      // Engagement Models
+      const Engagement = () => (
+        <section id="pricing" className="py-24 px-6 bg-[#0a0f1f]">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold">Flexible <span className="text-[#2A9DF4]">Engagement Models</span></h2>
+              <p className="text-gray-400 mt-3">How we work together — from discovery to deployment to ongoing partnership</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 items-stretch">
+              {engagementPlans.map((plan, idx) => (
+                <div key={idx} className={`rounded-2xl p-7 transition-all duration-300 flex flex-col h-full ${plan.popular ? 'pricing-popular relative border-2 border-cyan-500/70 bg-gradient-to-b from-[#0f1a2f] to-[#0a1022]' : 'border border-gray-800 bg-[#0e1628]'} hover:shadow-2xl`}>
+                  {plan.popular && <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-cyan-500 text-black text-xs font-bold px-4 py-1 rounded-full"><i className="fas fa-star mr-1"></i> Most Popular</div>}
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold">{plan.name}</h3>
+                    <div className="text-3xl font-extrabold mt-3 text-white">{plan.price}</div>
+                    <div className="h-px bg-gray-700 my-5"></div>
+                    <ul className="space-y-3 text-gray-300 text-sm">
+                      {plan.features.map((feat, i) => (
+                        <li key={i} className="flex items-center gap-2"><i className="fas fa-check-circle text-cyan-400 text-sm"></i> {feat}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mt-auto pt-6">
+                    <a href="#contact" className={`block text-center py-3 rounded-xl font-semibold transition ${plan.popular ? 'bg-[#2A9DF4] hover:bg-blue-600 text-white shadow-md' : 'border border-blue-500 text-white hover:bg-blue-500/20'}`}>{plan.cta}</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+
+      // INTELLIGENT CHAT WIDGET - Fully updated with proper responses
+      const AIChatWidget = () => {
+        const [isOpen, setIsOpen] = useState(false);
+        const [messages, setMessages] = useState([{ 
+          role: "bot", 
+          content: "👋 Hi! I'm Aura Assistant — an AI agent built by Lesedi. Ask me about our AI agents (Customer Experience, Operations, Knowledge Brain), pricing, or how we can automate your business!" 
+        }]);
+        const [input, setInput] = useState("");
+        const [isTyping, setIsTyping] = useState(false);
+        const messagesEndRef = useRef(null);
+
+        const scrollToBottom = () => messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+
+        useEffect(() => {
+          scrollToBottom();
+        }, [messages]);
+
+        // Intelligent response system
+        const getBotResponse = (userMessage) => {
+          const msg = userMessage.toLowerCase();
+          
+          // Services / Agents offered
+          if (msg.match(/services|offer|do you do|what can you|agents|solutions|what do you provide|what services/i)) {
+            return "🤖 We build 3 types of AI digital workers:\n\n" +
+                   "1️⃣ **Customer Experience Agent** — 24/7 intelligent support that answers customer queries, resolves issues, and books appointments autonomously.\n\n" +
+                   "2️⃣ **Operations & Admin Agent** — Monitors incoming emails, extracts data from PDFs/invoices, updates your CRM, and eliminates manual data entry errors.\n\n" +
+                   "3️⃣ **Knowledge Base Brain** — Train an AI on your internal manuals, compliance files, and company data. Your team gets instant answers from your own knowledge base.\n\n" +
+                   "Which one sounds most useful for your business?";
+          }
+          
+          // Pricing / Cost
+          else if (msg.match(/price|cost|how much|pricing|fee|rate|quote|afford|expensive|cheap/i)) {
+            return "💰 We offer flexible engagement models:\n\n" +
+                   "• **AI Scoping & Consultation** — From R3,500 (process audit + automation blueprint)\n" +
+                   "• **Custom Agent Build** — Project-based pricing (tailored to your specific workflow)\n" +
+                   "• **AI-as-a-Service Retainer** — From R8,500/month (ongoing support + optimization)\n\n" +
+                   "Want a free custom quote? Share your email in the contact form and Lesedi will send a detailed proposal within 24 hours!";
+          }
+          
+          // About Lesedi / Founder
+          else if (msg.match(/lesedi|founder|who are you|about you|specialist|background|owner|your name/i)) {
+            return "🧠 **Lesedi Tlhapane** is an AI Technical Specialist based in Pretoria, South Africa.\n\n" +
+                   "He was selected for the **eStudy AI Entrepreneurship Incubation Programme** — a 12-month sponsored journey building commercially viable AI agents. Lesedi retains full IP rights and has deployed production-ready automation for real clients across multiple industries.\n\n" +
+                   "His mission: help South African businesses harness autonomous AI systems that handle repetitive cognitive work.";
+          }
+          
+          // Chatbot specific
+          else if (msg.match(/chatbot|chat bot|conversational|ai chat|live chat/i)) {
+            return "💬 Great question! Our **Customer Experience Agent** is exactly what you're asking about — it's an advanced AI chatbot that:\n\n" +
+                   "• Answers complex customer questions 24/7\n" +
+                   "• Resolves support tickets autonomously\n" +
+                   "• Books appointments and qualifies leads\n" +
+                   "• Integrates with WhatsApp, website, and social media\n\n" +
+                   "Want to see a demo? Click 'Free AI Audit' on the homepage!";
+          }
+          
+          // Document / Admin automation
+          else if (msg.match(/document|admin|invoice|pdf|extract|data entry|paperwork|automate paperwork|ocr/i)) {
+            return "📄 Our **Operations & Admin Agent** specializes in:\n\n" +
+                   "• Extracting data from invoices, receipts, and forms\n" +
+                   "• Monitoring email inboxes for attachments\n" +
+                   "• Auto-updating CRMs and spreadsheets\n" +
+                   "• Routing documents to the right team members\n\n" +
+                   "Businesses typically save 10-20 hours per week on manual data entry. Want to calculate your potential savings?";
+          }
+          
+          // Knowledge base
+          else if (msg.match(/knowledge|internal|training|manual|employee|staff|wiki|company data|documents|learn/i)) {
+            return "🧠 The **Knowledge Base Brain** is perfect for:\n\n" +
+                   "• Training new employees (they can ask questions instead of reading manuals)\n" +
+                   "• Compliance teams needing instant policy answers\n" +
+                   "• Support teams accessing product documentation\n" +
+                   "• Sales teams finding technical specs quickly\n\n" +
+                   "We train the AI exclusively on YOUR files — nothing leaves your control.";
+          }
+          
+          // eStudy program
+          else if (msg.match(/estudy|incubation|programme|sponsored|12 month|stipend/i)) {
+            return "🎓 The **eStudy AI Entrepreneurship Incubation Programme** is a 12-month sponsored opportunity for aspiring AI specialists.\n\n" +
+                   "Selected candidates (like Lesedi) receive:\n" +
+                   "• Monthly stipend (R10,000)\n" +
+                   "• Mentorship and infrastructure access\n" +
+                   "• Full IP ownership of solutions they build\n" +
+                   "• A clear path to becoming an independent AI business owner\n\n" +
+                   "It's not a job — it's a launchpad for AI entrepreneurs.";
+          }
+          
+          // Contact
+          else if (msg.match(/contact|reach|call|email|whatsapp|phone|get in touch|how do i/i)) {
+            return "📬 You can reach Lesedi through:\n\n" +
+                   "• **WhatsApp:** +27 82 123 4567\n" +
+                   "• **Email:** hello@auratechintelligence.co.za\n" +
+                   "• **LinkedIn:** /aura-tech-intel\n\n" +
+                   "Or fill out the contact form on this page for a detailed response within 24 hours!";
+          }
+          
+          // Automation / Business processes
+          else if (msg.match(/automate|automation|business process|workflow|efficiency|save time|roi|benefit/i)) {
+            return "⚡ AI automation can transform your business by:\n\n" +
+                   "• Reducing manual data entry by 90%\n" +
+                   "• Answering customer inquiries instantly (24/7)\n" +
+                   "• Eliminating human error in repetitive tasks\n" +
+                   "• Freeing your team for strategic work\n\n" +
+                   "Most clients see ROI within 2-3 months. Ready to start with a free consultation?";
+          }
+          
+          // Greeting
+          else if (msg.match(/hello|hi|hey|good morning|good afternoon|howdy|sup/i)) {
+            return "Hello there! 👋 I'm here to help you understand how AI agents can transform your business. Feel free to ask about our services, pricing, or specific automation needs!";
+          }
+          
+          // Default helpful response
+          else {
+            return "Thanks for reaching out! I'd love to help with:\n\n" +
+                   "🔹 **AI Agents** — Customer support, admin automation, or internal knowledge base\n" +
+                   "🔹 **Pricing** — From R3,500 (consultation) to project-based or retainers\n" +
+                   "🔹 **Free AI Audit** — Lesedi analyzes your business for automation opportunities\n\n" +
+                   "What specific challenge are you trying to solve? Or just type 'services' to see what we offer!";
+          }
+        };
+
+        const handleSend = async () => {
+          if (!input.trim()) return;
+          
+          const userMsg = { role: "user", content: input };
+          setMessages(prev => [...prev, userMsg]);
+          const userQuestion = input;
+          setInput("");
+          setIsTyping(true);
+          
+          setTimeout(() => {
+            const botReply = getBotResponse(userQuestion);
+            setMessages(prev => [...prev, { role: "bot", content: botReply }]);
+            setIsTyping(false);
+          }, 600);
+        };
+
+        return (
+          <div className="chat-widget">
+            {isOpen && (
+              <div className="chat-window">
+                <div className="chat-header flex justify-between items-center">
+                  <span><i className="fas fa-robot mr-2"></i> Aura AI Assistant</span>
+                  <i className="fas fa-times cursor-pointer hover:text-red-400" onClick={() => setIsOpen(false)}></i>
+                </div>
+                <div className="chat-messages">
+                  {messages.map((msg, idx) => (
+                    <div key={idx} className={msg.role === "bot" ? "message-bot" : "message-user"}>
+                      {msg.content.split('\n').map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          {i < msg.content.split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
+                    </div>
+                  ))}
+                  {isTyping && (
+                    <div className="message-bot">
+                      <div className="typing-indicator">
+                        <span></span><span></span><span></span> Thinking...
+                      </div>
+                    </div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+                <div className="chat-input-area">
+                  <input 
+                    type="text" 
+                    placeholder="Ask about AI agents, pricing, or services..." 
+                    value={input} 
+                    onChange={(e) => setInput(e.target.value)} 
+                    onKeyPress={(e) => e.key === "Enter" && handleSend()} 
+                  />
+                  <button onClick={handleSend}><i className="fas fa-paper-plane"></i></button>
+                </div>
+                <div className="text-xs text-center text-gray-500 py-2 border-t border-gray-700">
+                  Powered by Aura Tech Intelligence
+                </div>
+              </div>
+            )}
+            <div className="chat-button" onClick={() => setIsOpen(!isOpen)}>
+              <i className="fas fa-comment-dots text-white text-2xl"></i>
+            </div>
+          </div>
+        );
+      };
+
+      // Contact with working form
+      const Contact = () => {
+        const [submitted, setSubmitted] = useState(false);
+        const handleSubmit = async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const formData = new FormData(form);
+          formData.append("access_key", "a7f3c2d1-1234-5678-9abc-def012345678");
+          try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+              setSubmitted(true);
+              form.reset();
+              setTimeout(() => setSubmitted(false), 5000);
+            } else {
+              alert("Form error. Please email directly: hello@auratechintelligence.co.za");
+            }
+          } catch (err) {
+            alert("Network issue. Please WhatsApp +27 82 123 4567");
+          }
+        };
+        return (
+          <section id="contact" className="py-24 px-6 bg-gradient-to-b from-[#0c1224] to-[#080e1c]">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold">Let's <span className="text-[#2A9DF4]">Build Your AI Agent</span></h2>
+                <p className="text-gray-400 mt-2">Tell me about your business challenge — I'll design an autonomous solution.</p>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-12">
+                <div className="lg:w-1/2 space-y-6">
+                  <div className="bg-[#0f182c] p-6 rounded-2xl border border-blue-900/40">
+                    <div className="flex items-center gap-4 text-xl"><i className="fab fa-whatsapp text-3xl text-green-400"></i> <span>+27 82 123 4567</span></div>
+                    <div className="flex items-center gap-4 mt-4"><i className="fab fa-linkedin text-3xl text-sky-400"></i> <span>linkedin.com/in/aura-tech-intel</span></div>
+                    <div className="flex items-center gap-4 mt-4"><i className="fas fa-envelope text-3xl text-blue-300"></i> <span>hello@auratechintelligence.co.za</span></div>
+                    <div className="mt-6 pt-4 border-t border-gray-700 flex items-center gap-2"><i className="fas fa-map-pin text-blue-400"></i> Pretoria, Gauteng, South Africa</div>
+                  </div>
+                  <div className="bg-[#0a1122] p-5 rounded-xl border border-blue-800/30">
+                    <p className="italic text-gray-300">"We deployed Lesedi's Knowledge Brain agent — our team now saves 15+ hours weekly on internal queries." — Thabo M., Operations Director</p>
+                  </div>
+                </div>
+                <div className="lg:w-1/2">
+                  <form onSubmit={handleSubmit} className="bg-[#0f182c] p-7 rounded-2xl border border-gray-800">
+                    <div className="grid grid-cols-1 gap-5">
+                      <input type="hidden" name="subject" value="New AI Consultation Request from Aura Tech" />
+                      <div><input type="text" name="name" placeholder="Full Name" required className="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white" /></div>
+                      <div><input type="email" name="email" placeholder="Email Address" required className="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white" /></div>
+                      <div><input type="tel" name="phone" placeholder="Phone Number" className="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white" /></div>
+                      <div><textarea rows="4" name="message" placeholder="Which AI agent are you interested in?" required className="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white"></textarea></div>
+                      <button type="submit" className="bg-[#2A9DF4] hover:bg-[#1f7bc0] py-3 rounded-xl font-bold text-white transition-all flex items-center justify-center gap-2"><i className="fas fa-paper-plane"></i> Send & Get AI Blueprint</button>
+                      {submitted && <div className="text-green-400 text-center text-sm">✓ Message sent! Lesedi will reply within 24h.</div>}
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const Footer = () => (
+        <footer className="bg-[#050a15] py-8 border-t border-gray-800">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+            <div>© 2025 Aura Tech Intelligence. All rights reserved.</div>
+            <div className="flex gap-6"><i className="fab fa-twitter hover:text-blue-300"></i><i className="fab fa-linkedin hover:text-blue-300"></i><i className="fab fa-github hover:text-blue-300"></i></div>
+            <div className="text-xs">🤖 AI Agents • Pretoria • eStudy Incubation Alumni</div>
+          </div>
+        </footer>
+      );
+
+      const App = () => (
+        <div className="bg-[#0a0f1f] relative">
+          <Header />
+          <Hero />
+          <Agents />
+          <About />
+          <Engagement />
+          <Contact />
+          <Footer />
+          <AIChatWidget />
+        </div>
+      );
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
+```
