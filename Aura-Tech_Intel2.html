@@ -40,19 +40,14 @@
         .chat-input-area input { flex: 1; background: #1e2a48; border: none; border-radius: 24px; padding: 10px 16px; color: white; outline: none; }
         .chat-input-area button { background: #2A9DF4; border: none; border-radius: 24px; padding: 8px 18px; color: white; cursor: pointer; }
         .logo-text { font-family: 'Space Grotesk', monospace; letter-spacing: -0.02em; }
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .tech-tag { background: rgba(42, 157, 244, 0.12); color: #2A9DF4; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+        .agent-badge { background: rgba(0, 200, 255, 0.15); color: #00d4ff; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .workflow-badge { background: rgba(251, 191, 36, 0.15); color: #fbbf24; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .pricing-popular { border: 2px solid #2A9DF4; box-shadow: 0 0 30px rgba(0, 150, 255, 0.25); transform: scale(1.02); background: linear-gradient(145deg, #0e1a2f, #091020); }
         @media (max-width: 768px) { 
             .chat-window { width: 320px; right: 0; bottom: 70px; }
             .pricing-popular { transform: scale(1); }
         }
-        .tech-tag { background: rgba(42, 157, 244, 0.12); color: #2A9DF4; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; }
-        .service-badge { background: rgba(42, 157, 244, 0.15); color: #00d4ff; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .workflow-badge { background: rgba(251, 191, 36, 0.15); color: #fbbf24; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .agent-badge { background: rgba(0, 200, 255, 0.15); color: #00d4ff; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .agent-icon { color: #00d4ff; }
-        .workflow-icon { color: #fbbf24; }
     </style>
 </head>
 <body>
@@ -69,8 +64,10 @@
                 <a href="#workflows" class="hover:text-[#2A9DF4] transition-colors">Workflows</a>
                 <a href="#services" class="hover:text-[#2A9DF4] transition-colors">Services</a>
                 <a href="#portfolio" class="hover:text-[#2A9DF4] transition-colors">Portfolio</a>
+                <a href="#howitworks" class="hover:text-[#2A9DF4] transition-colors">How It Works</a>
                 <a href="#about" class="hover:text-[#2A9DF4] transition-colors">About</a>
                 <a href="#pricing" class="hover:text-[#2A9DF4] transition-colors">Pricing</a>
+                <a href="#faq" class="hover:text-[#2A9DF4] transition-colors">FAQ</a>
                 <a href="#contact" class="hover:text-[#2A9DF4] transition-colors">Contact</a>
             </div>
             <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
@@ -83,8 +80,10 @@
             <a href="#workflows" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Workflows</a>
             <a href="#services" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Services</a>
             <a href="#portfolio" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Portfolio</a>
+            <a href="#howitworks" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">How It Works</a>
             <a href="#about" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">About</a>
             <a href="#pricing" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Pricing</a>
+            <a href="#faq" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">FAQ</a>
             <a href="#contact" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Contact</a>
         </div>
     </nav>
@@ -132,7 +131,7 @@
                         <span class="agent-badge">Ready to Deploy</span>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Customer Experience Agent</h3>
-                    <p class="text-gray-400 text-sm">24/7 intelligent support that answers complex queries, resolves issues, and books appointments autonomously — no human needed.</p>
+                    <p class="text-gray-400 text-sm">24/7 intelligent support that answers complex queries, resolves issues, and books appointments autonomously.</p>
                     <div class="mt-4 flex flex-wrap gap-2">
                         <span class="tech-tag">Multi-channel</span>
                         <span class="tech-tag">Sentiment Analysis</span>
@@ -143,7 +142,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="agent-card rounded-2xl p-6 card-hover">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-cyan-400"><i class="fas fa-file-invoice"></i></div>
@@ -161,7 +159,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="agent-card rounded-2xl p-6 card-hover">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-cyan-400"><i class="fas fa-brain"></i></div>
@@ -179,7 +176,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="agent-card rounded-2xl p-6 card-hover">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-cyan-400"><i class="fas fa-users"></i></div>
@@ -197,7 +193,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="agent-card rounded-2xl p-6 card-hover border-2 border-cyan-500/30 bg-gradient-to-b from-[#0f1a2f] to-[#0a1022]">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-cyan-400"><i class="fas fa-cogs"></i></div>
@@ -215,7 +210,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="agent-card rounded-2xl p-6 card-hover bg-[#0f182c] border border-gray-700/50">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-gray-500"><i class="fas fa-robot"></i></div>
@@ -263,7 +257,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="workflow-card rounded-2xl p-6 card-hover">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-yellow-400"><i class="fas fa-file-invoice-dollar"></i></div>
@@ -281,7 +274,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="workflow-card rounded-2xl p-6 card-hover">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-yellow-400"><i class="fas fa-ticket-alt"></i></div>
@@ -299,7 +291,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="workflow-card rounded-2xl p-6 card-hover">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-yellow-400"><i class="fas fa-user-plus"></i></div>
@@ -317,7 +308,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="workflow-card rounded-2xl p-6 card-hover border-2 border-yellow-400/30 bg-gradient-to-b from-[#0e1a2f] to-[#091020]">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-yellow-400"><i class="fas fa-project-diagram"></i></div>
@@ -335,7 +325,6 @@
                         <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
                     </div>
                 </div>
-
                 <div class="workflow-card rounded-2xl p-6 card-hover">
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-5xl text-yellow-400"><i class="fas fa-sync-alt"></i></div>
@@ -357,8 +346,75 @@
         </div>
     </section>
 
+    <!-- Services -->
+    <section id="services" class="py-24 px-6 bg-[#0a0f1f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold">Complete <span class="text-[#2A9DF4]">Service List</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Everything you need to deploy AI agents and intelligent workflows</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
+                        <i class="fas fa-search text-blue-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">AI Scoping & Consultation</h4>
+                    <p class="text-gray-400 text-sm">Comprehensive audit of your business processes. Delivers a 20+ page blueprint with ROI projections and proof-of-concept demo.</p>
+                    <div class="mt-4 text-blue-300 font-semibold">From R3,500</div>
+                </div>
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
+                        <i class="fas fa-broom text-blue-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Data Preparation</h4>
+                    <p class="text-gray-400 text-sm">Clean, structure, and prepare your data for AI applications. Many AI projects fail because of "dirty" data.</p>
+                    <div class="mt-4 text-blue-300 font-semibold">From R6,000</div>
+                </div>
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
+                        <i class="fas fa-chalkboard-teacher text-blue-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">AI Upskilling Workshops</h4>
+                    <p class="text-gray-400 text-sm">Half-day or full-day sessions teaching your team how to use AI tools effectively in their specific roles.</p>
+                    <div class="mt-4 text-blue-300 font-semibold">From R5,000/session</div>
+                </div>
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-cyan-500/20 px-3 py-1 rounded-full text-xs text-cyan-300">AI Agents</span>
+                        <i class="fas fa-robot text-cyan-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Custom AI Agent Build</h4>
+                    <p class="text-gray-400 text-sm">Build a specific "Digital Worker" for your business: Customer Experience, Operations & Admin, Knowledge Base, or HR.</p>
+                    <div class="mt-4 text-cyan-300 font-semibold">R8,000 – R45,000</div>
+                </div>
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-yellow-500/20 px-3 py-1 rounded-full text-xs text-yellow-300">Workflows</span>
+                        <i class="fas fa-cogs text-yellow-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">End-to-End Automation</h4>
+                    <p class="text-gray-400 text-sm">Complete workflow automation—from lead capture to CRM update, from invoice to payment, from ticket to resolution.</p>
+                    <div class="mt-4 text-yellow-300 font-semibold">Custom Quote (R50,000+)</div>
+                </div>
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-purple-500/20 px-3 py-1 rounded-full text-xs text-purple-300">Scale</span>
+                        <i class="fas fa-handshake text-purple-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">AI-as-a-Service Retainer</h4>
+                    <p class="text-gray-400 text-sm">Dedicated AI specialist, continuous optimization, priority feature development, and SLA-backed support.</p>
+                    <div class="mt-4 text-purple-300 font-semibold">From R8,500/mo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- How It Works -->
-    <section id="howitworks" class="py-24 px-6 bg-[#0a0f1f]">
+    <section id="howitworks" class="py-24 px-6 bg-[#0c1222]">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl font-bold">How <span class="text-[#2A9DF4]">It Works</span></h2>
@@ -385,79 +441,6 @@
         </div>
     </section>
 
-    <!-- Services (Full Service List) -->
-    <section id="services" class="py-24 px-6 bg-[#0c1222]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-14">
-                <h2 class="text-4xl md:text-5xl font-bold">Complete <span class="text-[#2A9DF4]">Service List</span></h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
-                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Everything you need to deploy AI agents and intelligent workflows</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="service-card rounded-2xl p-6 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
-                        <i class="fas fa-search text-blue-400"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">AI Scoping & Consultation</h4>
-                    <p class="text-gray-400 text-sm">Comprehensive audit of your business processes. Delivers a 20+ page blueprint with ROI projections and proof-of-concept demo.</p>
-                    <div class="mt-4 text-blue-300 font-semibold">From R3,500</div>
-                </div>
-
-                <div class="service-card rounded-2xl p-6 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
-                        <i class="fas fa-broom text-blue-400"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">Data Preparation</h4>
-                    <p class="text-gray-400 text-sm">Clean, structure, and prepare your data for AI applications. Many AI projects fail because of "dirty" data.</p>
-                    <div class="mt-4 text-blue-300 font-semibold">From R6,000</div>
-                </div>
-
-                <div class="service-card rounded-2xl p-6 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
-                        <i class="fas fa-chalkboard-teacher text-blue-400"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">AI Upskilling Workshops</h4>
-                    <p class="text-gray-400 text-sm">Half-day or full-day sessions teaching your team how to use AI tools effectively in their specific roles.</p>
-                    <div class="mt-4 text-blue-300 font-semibold">From R5,000/session</div>
-                </div>
-
-                <div class="service-card rounded-2xl p-6 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-cyan-500/20 px-3 py-1 rounded-full text-xs text-cyan-300">AI Agents</span>
-                        <i class="fas fa-robot text-cyan-400"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">Custom AI Agent Build</h4>
-                    <p class="text-gray-400 text-sm">Build a specific "Digital Worker" for your business: Customer Experience, Operations & Admin, Knowledge Base, or HR.</p>
-                    <div class="mt-4 text-cyan-300 font-semibold">R8,000 – R45,000</div>
-                </div>
-
-                <div class="service-card rounded-2xl p-6 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-yellow-500/20 px-3 py-1 rounded-full text-xs text-yellow-300">Workflows</span>
-                        <i class="fas fa-cogs text-yellow-400"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">End-to-End Automation</h4>
-                    <p class="text-gray-400 text-sm">Complete workflow automation—from lead capture to CRM update, from invoice to payment, from ticket to resolution.</p>
-                    <div class="mt-4 text-yellow-300 font-semibold">Custom Quote (R50,000+)</div>
-                </div>
-
-                <div class="service-card rounded-2xl p-6 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-purple-500/20 px-3 py-1 rounded-full text-xs text-purple-300">Scale</span>
-                        <i class="fas fa-handshake text-purple-400"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-2">AI-as-a-Service Retainer</h4>
-                    <p class="text-gray-400 text-sm">Dedicated AI specialist, continuous optimization, priority feature development, and SLA-backed support.</p>
-                    <div class="mt-4 text-purple-300 font-semibold">From R8,500/mo</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Portfolio -->
     <section id="portfolio" class="py-24 px-6 bg-[#0a0f1f]">
         <div class="max-w-7xl mx-auto">
@@ -466,7 +449,6 @@
                 <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
                 <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Proof of capability—AI agents and workflows we've already built</p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="portfolio-card rounded-2xl p-6">
                     <div class="flex justify-between items-start mb-4">
@@ -487,7 +469,6 @@
                     </div>
                     <a href="https://github.com/LesediTlhapane/Orbit-Ai-" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> View on GitHub →</a>
                 </div>
-
                 <div class="portfolio-card rounded-2xl p-6">
                     <div class="flex justify-between items-start mb-4">
                         <div>
@@ -510,7 +491,6 @@
                         <a href="https://github.com/LesediTlhapane/Leave_Management_system-" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> Admin →</a>
                     </div>
                 </div>
-
                 <div class="portfolio-card rounded-2xl p-6">
                     <div class="flex justify-between items-start mb-4">
                         <div>
@@ -529,7 +509,6 @@
                     </div>
                     <a href="https://github.com/LesediTlhapane/ai-discovery-stack" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> View on GitHub →</a>
                 </div>
-
                 <div class="portfolio-card rounded-2xl p-6">
                     <div class="flex justify-between items-start mb-4">
                         <div>
@@ -549,8 +528,6 @@
                     <a href="https://supatechintel.app.n8n.cloud/webhook/e64d38c2-7bfb-41a2-8c23-3cc036b1f036/chat" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fas fa-external-link-alt mr-1"></i> Try Demo →</a>
                 </div>
             </div>
-
-            <!-- Web Projects Sub-section -->
             <h3 class="text-2xl font-semibold text-blue-300 mt-12 mb-6">Web & Application Projects</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="portfolio-card rounded-2xl p-6">
@@ -578,59 +555,6 @@
                         <span class="tech-tag">JavaScript</span>
                     </div>
                     <a href="https://github.com/LesediTlhapane/clean-sole-haven" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> View on GitHub →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack -->
-    <section id="techstack" class="py-24 px-6 bg-[#0c1222]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-14">
-                <h2 class="text-4xl md:text-5xl font-bold">Our <span class="text-[#2A9DF4]">Technology Stack</span></h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
-                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Modern, flexible tools for building AI agents and intelligent workflows</p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fab fa-python text-4xl text-blue-400 mb-3"></i>
-                    <h4 class="font-semibold">Python</h4>
-                    <p class="text-gray-500 text-sm">Core AI & Backend</p>
-                </div>
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fab fa-react text-4xl text-cyan-400 mb-3"></i>
-                    <h4 class="font-semibold">React & React Native</h4>
-                    <p class="text-gray-500 text-sm">Frontend & Mobile Apps</p>
-                </div>
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fas fa-brain text-4xl text-purple-400 mb-3"></i>
-                    <h4 class="font-semibold">LangChain / LlamaIndex</h4>
-                    <p class="text-gray-500 text-sm">AI Agent Frameworks</p>
-                </div>
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fas fa-cloud text-4xl text-orange-400 mb-3"></i>
-                    <h4 class="font-semibold">AWS / Azure / GCP</h4>
-                    <p class="text-gray-500 text-sm">Cloud Infrastructure</p>
-                </div>
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fas fa-database text-4xl text-green-400 mb-3"></i>
-                    <h4 class="font-semibold">PostgreSQL / Supabase</h4>
-                    <p class="text-gray-500 text-sm">Data Storage</p>
-                </div>
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fas fa-vector-square text-4xl text-yellow-400 mb-3"></i>
-                    <h4 class="font-semibold">Vector Databases</h4>
-                    <p class="text-gray-500 text-sm">Pinecone, Weaviate</p>
-                </div>
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fab fa-docker text-4xl text-blue-500 mb-3"></i>
-                    <h4 class="font-semibold">Docker</h4>
-                    <p class="text-gray-500 text-sm">Containerization</p>
-                </div>
-                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
-                    <i class="fas fa-cogs text-4xl text-yellow-500 mb-3"></i>
-                    <h4 class="font-semibold">n8n</h4>
-                    <p class="text-gray-500 text-sm">Workflow Automation</p>
                 </div>
             </div>
         </div>
@@ -744,7 +668,7 @@
                         What's the difference between an AI Agent and a Workflow?
                         <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
                     </summary>
-                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">An <strong>AI Agent</strong> is a digital worker that handles a specific task—like answering customer questions or processing invoices. A <strong>Workflow</strong> connects multiple agents and systems together to automate an entire business process—like taking a lead from website form to CRM to email sequence to sale. We build both, and they work together to create a fully autonomous digital workforce.</p>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">An <strong>AI Agent</strong> is a digital worker that handles a specific task—like answering customer questions or processing invoices. A <strong>Workflow</strong> connects multiple agents and systems together to automate an entire business process.</p>
                 </details>
                 <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
                     <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
@@ -758,28 +682,28 @@
                         Who owns the AI agent and workflow after I pay?
                         <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
                     </summary>
-                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">You do. You retain full ownership of any custom AI agent or workflow built for your business. We retain the right to reuse core technology patterns, but your specific configuration and data remain yours.</p>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">You do. You retain full ownership of any custom AI agent or workflow built for your business.</p>
                 </details>
                 <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
                     <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
                         How long does it take to build an AI agent or workflow?
                         <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
                     </summary>
-                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">Simple agents take 2-3 weeks. Complex agents with workflows and multiple integrations take 4-6 weeks. The scoping consultation gives you an exact timeline.</p>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">Simple agents take 2-3 weeks. Complex agents with workflows and multiple integrations take 4-6 weeks.</p>
                 </details>
                 <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
                     <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
                         Can I try an agent or workflow before committing?
                         <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
                     </summary>
-                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">Yes. The AI Scoping & Consultation includes a proof-of-concept demo showing exactly how an AI agent or workflow would work in your specific business before you commit to a full build.</p>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">Yes. The AI Scoping & Consultation includes a proof-of-concept demo showing exactly how an AI agent or workflow would work in your specific business.</p>
                 </details>
                 <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
                     <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
                         What industries do you work with?
                         <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
                     </summary>
-                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">We work across industries—professional services, real estate, e-commerce, education, HR, manufacturing, and more. Our agents and workflows are customized to your specific processes, regardless of industry.</p>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">We work across industries—professional services, real estate, e-commerce, education, HR, manufacturing, and more.</p>
                 </details>
             </div>
         </div>
@@ -875,7 +799,6 @@
             icon.classList.toggle('fa-times');
         });
 
-        // Close mobile menu on link click
         document.querySelectorAll('#mobileMenu a').forEach(link => {
             link.addEventListener('click', function() {
                 document.getElementById('mobileMenu').classList.add('hidden');
@@ -885,7 +808,6 @@
             });
         });
 
-        // Smooth scroll for all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
@@ -896,7 +818,7 @@
             });
         });
 
-        // Chat widget toggle
+        // Chat widget
         const chatButton = document.getElementById('chatButton');
         const chatWindow = document.getElementById('chatWindow');
         const closeChat = document.getElementById('closeChat');
@@ -909,29 +831,26 @@
             chatWindow.classList.remove('open');
         });
 
-        // Chat functionality
         const chatInput = document.getElementById('chatInput');
         const sendChat = document.getElementById('sendChat');
         const chatMessages = document.getElementById('chatMessages');
 
         function getBotResponse(message) {
             const msg = message.toLowerCase();
-            if (msg.match(/agent|agents|digital worker|bot|chatbot|what agents/)) {
-                return "🤖 We build 5 types of AI Agents:\n\n1️⃣ Customer Experience Agent - 24/7 support, appointment booking (R8,000 - R25,000)\n2️⃣ Operations & Admin Agent - Email parsing, document extraction, CRM update (R10,000 - R30,000)\n3️⃣ Knowledge Base Brain - Internal Q&A on your company data (R12,000 - R35,000)\n4️⃣ HR & Recruitment Agent - Resume screening, scheduling, onboarding (R10,000 - R30,000)\n5️⃣ Custom Agent - Built for your specific need (R15,000 - R45,000)\n\nWhich one interests you?";
-            } else if (msg.match(/workflow|workflows|automation|process|end-to-end|pipeline/)) {
-                return "⚙️ We build Intelligent Workflows that connect multiple agents and systems:\n\n• Lead-to-Customer Workflow (From R30,000)\n• Invoice-to-Payment Workflow (From R40,000)\n• Support Ticket Workflow (From R35,000)\n• Employee Onboarding Workflow (From R30,000)\n• Custom Workflow (Custom Quote)\n\nWe automate your entire process from start to finish!";
-            } else if (msg.match(/price|cost|how much|pricing|fee|expensive/)) {
-                return "💰 Our pricing:\n\n🔄 Workflows: From R30,000 - R50,000+\n🤖 AI Agents: R8,000 - R45,000\n📋 Scoping & Consultation: From R3,500\n📊 AI-as-a-Service Retainer: From R8,500/month\n📈 Strategy Advisory: From R15,000/month\n\nWant a custom quote? Contact Lesedi at 084-833-7335!";
-            } else if (msg.match(/lesedi|founder|who are you|about you|background/)) {
-                return "🧠 Lesedi Tlhapane is an AI Technical Specialist based in Pretoria, currently in the eStudy AI Incubation Programme. He builds custom AI agents and intelligent workflows for South African businesses.\n\n🎓 Qualifications: Degree in Software Development / IT / Data Science\n🚀 Projects: Orbit-AI (Project Management), Leave Management System with AI, AI Discovery Stack, and more.\n📱 Contact: 084-833-7335";
-            } else if (msg.match(/contact|reach|call|email|whatsapp|phone|get in touch/)) {
-                return "📬 You can reach Lesedi directly:\n\n• Phone/WhatsApp: 084-833-7335\n• Email: auratechintel@outlook.com\n• LinkedIn: linkedin.com/in/lesedi-tlhapane\n\nOr fill out the contact form above!";
-            } else if (msg.match(/portfolio|projects|work|done|built|examples/)) {
-                return "📁 Here are some of our projects:\n\n🤖 Orbit-AI: AI-powered project management (Agent + Workflow)\n🏢 Leave Management System: HR automation with AI (Agent + Workflow)\n🔍 AI Discovery Stack: AI capabilities showcase\n💬 Wellness Chatbot: Conversational AI agent\n🛒 Trolie Forward Movement: E-commerce platform\n👟 Clean Sole Haven: Business website\n\nAll projects are on GitHub: github.com/LesediTlhapane";
-            } else if (msg.match(/tech|stack|software|tools|technology/)) {
-                return "⚙️ Our technology stack includes:\n\n• Python (Core AI & Backend)\n• React / React Native (Frontend & Mobile)\n• LangChain / LlamaIndex (AI Agent Frameworks)\n• n8n (Workflow Automation)\n• AWS / Azure / GCP (Cloud)\n• PostgreSQL / Supabase (Data)\n• Docker (Containerization)\n• TypeScript / Node.js\n\nWe use the right tools for each project.";
+            if (msg.match(/agent|agents|digital worker|bot/)) {
+                return "🤖 We build 5 types of AI Agents:\n\n1️⃣ Customer Experience Agent - 24/7 support (R8,000 - R25,000)\n2️⃣ Operations & Admin Agent - Email parsing, CRM (R10,000 - R30,000)\n3️⃣ Knowledge Base Brain - Internal Q&A (R12,000 - R35,000)\n4️⃣ HR & Recruitment Agent - Screening, onboarding (R10,000 - R30,000)\n5️⃣ Custom Agent - Built for your need (R15,000 - R45,000)";
+            } else if (msg.match(/workflow|workflows|automation/)) {
+                return "⚙️ We build Intelligent Workflows:\n\n• Lead-to-Customer (From R30,000)\n• Invoice-to-Payment (From R40,000)\n• Support Ticket (From R35,000)\n• Employee Onboarding (From R30,000)\n• Custom Workflow (Custom Quote)";
+            } else if (msg.match(/price|cost|pricing/)) {
+                return "💰 Pricing:\n\n• AI Agents: R8,000 - R45,000\n• Workflows: From R30,000\n• Scoping: From R3,500\n• Retainer: From R8,500/month\n• Strategy Advisory: From R15,000/month";
+            } else if (msg.match(/lesedi|founder|about you/)) {
+                return "🧠 Lesedi Tlhapane is an AI Technical Specialist based in Pretoria, currently in the eStudy AI Incubation Programme. He builds custom AI agents and intelligent workflows for South African businesses.";
+            } else if (msg.match(/contact|reach|call|whatsapp/)) {
+                return "📬 You can reach Lesedi directly:\n\n• Phone/WhatsApp: 084-833-7335\n• Email: auratechintel@outlook.com\n• LinkedIn: linkedin.com/in/lesedi-tlhapane";
+            } else if (msg.match(/portfolio|projects|work/)) {
+                return "📁 Our projects include:\n\n🤖 Orbit-AI: AI-powered project management\n🏢 Leave Management System: HR automation with AI\n🔍 AI Discovery Stack: AI capabilities showcase\n💬 Wellness Chatbot: Conversational AI agent\n🛒 Trolie Forward Movement: E-commerce platform\n👟 Clean Sole Haven: Business website";
             } else {
-                return "Thanks for your message! I'm here to help. You can ask me about:\n\n• AI Agents (digital workers)\n• Workflows (process automation)\n• Pricing\n• Portfolio\n• Technology Stack\n\nFor immediate assistance, WhatsApp Lesedi at 084-833-7335 or email auratechintel@outlook.com.";
+                return "Thanks for your message! Ask me about AI Agents, Workflows, Pricing, Portfolio, or Contact details. For immediate help, WhatsApp 084-833-7335.";
             }
         }
 
@@ -939,7 +858,6 @@
             const message = chatInput.value.trim();
             if (!message) return;
 
-            // Add user message
             const userDiv = document.createElement('div');
             userDiv.className = 'message-user';
             userDiv.textContent = message;
@@ -948,7 +866,6 @@
             chatInput.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Simulate typing and response
             setTimeout(() => {
                 const response = getBotResponse(message);
                 const botDiv = document.createElement('div');
@@ -964,7 +881,7 @@
             if (e.key === 'Enter') sendMessage();
         });
 
-        // Contact form submission
+        // Contact form
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const formData = new FormData(this);
@@ -989,17 +906,6 @@
                 alert('Network issue. Please WhatsApp 084-833-7335');
             }
         });
-
-        // Fade-up animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
