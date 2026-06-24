@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Tech Intelligence - AI Agents & Workflow Automation</title>
+    <meta name="description" content="Aura Tech Intelligence builds AI agents and intelligent workflow automation for African businesses. Custom digital workers, process automation, and AI consulting." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0f1f; color: #e0e0e0; scroll-behavior: smooth; }
+        .nav-blur { backdrop-filter: blur(16px); background: rgba(5, 10, 25, 0.92); border-bottom: 1px solid rgba(0, 150, 255, 0.3); }
+        .hero-glow { background: radial-gradient(ellipse at 30% 40%, rgba(0, 180, 255, 0.12), rgba(2, 20, 45, 0.96)); }
+        .animated-gradient-text { background: linear-gradient(135deg, #FFFFFF 20%, #2A9DF4 50%, #00D4FF 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3s infinite linear; }
+        @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+        .card-hover { transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 25px 40px -12px rgba(0, 180, 255, 0.3); border-color: rgba(0, 200, 255, 0.7); }
+        .btn-glow { transition: all 0.2s ease; }
+        .btn-glow:hover { box-shadow: 0 0 16px #00aeff; transform: translateY(-2px); }
+        .service-card { background: linear-gradient(145deg, #0e1a2f, #091020); border: 1px solid rgba(42, 157, 244, 0.15); transition: all 0.3s; }
+        .service-card:hover { border-color: rgba(42, 157, 244, 0.5); transform: translateY(-8px); box-shadow: 0 20px 40px -12px rgba(0, 180, 255, 0.25); }
+        .agent-card { background: linear-gradient(145deg, #0f1a2e, #0a1220); border: 1px solid rgba(0, 200, 255, 0.1); transition: all 0.3s; }
+        .agent-card:hover { border-color: #00d4ff; transform: translateY(-8px); box-shadow: 0 20px 40px -12px rgba(0, 180, 255, 0.2); }
+        .workflow-card { background: linear-gradient(145deg, #0e1a2f, #091020); border: 1px solid rgba(255, 200, 0, 0.1); transition: all 0.3s; }
+        .workflow-card:hover { border-color: #fbbf24; transform: translateY(-8px); box-shadow: 0 20px 40px -12px rgba(251, 191, 36, 0.15); }
+        .portfolio-card { background: #0f182c; border: 1px solid rgba(42, 157, 244, 0.1); transition: all 0.3s; }
+        .portfolio-card:hover { border-color: #2A9DF4; transform: translateY(-6px); box-shadow: 0 15px 30px -10px rgba(0, 150, 255, 0.2); }
+        .chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 1000; }
+        .chat-button { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2A9DF4, #00b4ff); box-shadow: 0 4px 20px rgba(0, 180, 255, 0.5); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .chat-button:hover { transform: scale(1.08); }
+        .chat-window { position: absolute; bottom: 80px; right: 0; width: 380px; height: 520px; background: #0f1a2e; border-radius: 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); display: none; flex-direction: column; overflow: hidden; border: 1px solid rgba(42, 157, 244, 0.4); }
+        .chat-window.open { display: flex; }
+        .chat-header { background: linear-gradient(135deg, #0a1128, #0d1835); padding: 16px; color: white; font-weight: bold; border-bottom: 1px solid #2A9DF4; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+        .message-bot { background: #1e2a48; padding: 10px 14px; border-radius: 18px; border-bottom-left-radius: 4px; max-width: 85%; color: #e0e0e0; font-size: 14px; align-self: flex-start; white-space: pre-wrap; line-height: 1.5; }
+        .message-user { background: #2A9DF4; padding: 10px 14px; border-radius: 18px; border-bottom-right-radius: 4px; max-width: 85%; color: white; font-size: 14px; align-self: flex-end; }
+        .chat-input-area { display: flex; padding: 12px; gap: 8px; border-top: 1px solid #2a3a60; background: #0a1128; }
+        .chat-input-area input { flex: 1; background: #1e2a48; border: none; border-radius: 24px; padding: 10px 16px; color: white; outline: none; }
+        .chat-input-area button { background: #2A9DF4; border: none; border-radius: 24px; padding: 8px 18px; color: white; cursor: pointer; }
+        .logo-text { font-family: 'Space Grotesk', monospace; letter-spacing: -0.02em; }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .pricing-popular { border: 2px solid #2A9DF4; box-shadow: 0 0 30px rgba(0, 150, 255, 0.25); transform: scale(1.02); background: linear-gradient(145deg, #0e1a2f, #091020); }
+        @media (max-width: 768px) { 
+            .chat-window { width: 320px; right: 0; bottom: 70px; }
+            .pricing-popular { transform: scale(1); }
+        }
+        .tech-tag { background: rgba(42, 157, 244, 0.12); color: #2A9DF4; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+        .service-badge { background: rgba(42, 157, 244, 0.15); color: #00d4ff; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .workflow-badge { background: rgba(251, 191, 36, 0.15); color: #fbbf24; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .agent-badge { background: rgba(0, 200, 255, 0.15); color: #00d4ff; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .agent-icon { color: #00d4ff; }
+        .workflow-icon { color: #fbbf24; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold logo-text bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">Aura-Tech</span>
+                <span class="text-xs font-semibold text-blue-400 ml-1 tracking-wider">INTELLIGENCE</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#home" class="hover:text-[#2A9DF4] transition-colors">Home</a>
+                <a href="#agents" class="hover:text-[#2A9DF4] transition-colors">AI Agents</a>
+                <a href="#workflows" class="hover:text-[#2A9DF4] transition-colors">Workflows</a>
+                <a href="#services" class="hover:text-[#2A9DF4] transition-colors">Services</a>
+                <a href="#portfolio" class="hover:text-[#2A9DF4] transition-colors">Portfolio</a>
+                <a href="#about" class="hover:text-[#2A9DF4] transition-colors">About</a>
+                <a href="#pricing" class="hover:text-[#2A9DF4] transition-colors">Pricing</a>
+                <a href="#contact" class="hover:text-[#2A9DF4] transition-colors">Contact</a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-[#0e172a] border-b border-blue-900/40 py-4 px-6 flex flex-col gap-3">
+            <a href="#home" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Home</a>
+            <a href="#agents" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">AI Agents</a>
+            <a href="#workflows" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Workflows</a>
+            <a href="#services" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Services</a>
+            <a href="#portfolio" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Portfolio</a>
+            <a href="#about" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">About</a>
+            <a href="#pricing" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Pricing</a>
+            <a href="#contact" class="block py-2 text-gray-200 hover:text-[#2A9DF4] transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 hero-glow">
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <div class="flex justify-center mb-6">
+                <div class="inline-flex items-center gap-2 bg-blue-500/10 backdrop-blur-sm border border-blue-400/30 rounded-full px-5 py-2">
+                    <i class="fas fa-check-circle text-cyan-400 text-sm"></i>
+                    <span class="text-sm font-medium">✨ eStudy AI Incubation — Current Cohort</span>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                AI Agents & <span class="animated-gradient-text">Intelligent Workflows.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mt-6">
+                Deploy autonomous digital workers and end-to-end automation that operate 24/7 — from customer support to back-office processes. Built for African businesses by a Pretoria-based AI specialist.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-5">
+                <a href="#contact" class="bg-[#2A9DF4] hover:bg-[#1f7bc0] text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-lg shadow-blue-500/30 flex items-center gap-2 btn-glow"><i class="fas fa-calendar-check"></i> Free AI Audit →</a>
+                <a href="#agents" class="border border-blue-500 text-white px-8 py-4 rounded-xl font-medium hover:bg-white/10 transition">Explore AI Agents <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+                <span><i class="fas fa-robot text-blue-400 mr-1"></i> Autonomous AI Agents</span>
+                <span><i class="fas fa-cogs text-yellow-400 mr-1"></i> Workflow Automation</span>
+                <span><i class="fas fa-shield-alt text-blue-400 mr-1"></i> Enterprise-Grade Security</span>
+                <span><i class="fas fa-chart-line text-blue-400 mr-1"></i> Tailored for Africa</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Section -->
+    <section id="agents" class="py-24 px-6 bg-[#0a0f1f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold">Our <span class="text-[#2A9DF4]">AI Agents</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Autonomous digital workers that handle specific roles in your business — 24/7, no breaks, no errors</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="agent-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-cyan-400"><i class="fas fa-headset"></i></div>
+                        <span class="agent-badge">Ready to Deploy</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Customer Experience Agent</h3>
+                    <p class="text-gray-400 text-sm">24/7 intelligent support that answers complex queries, resolves issues, and books appointments autonomously — no human needed.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="tech-tag">Multi-channel</span>
+                        <span class="tech-tag">Sentiment Analysis</span>
+                        <span class="tech-tag">Appointment Booking</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-blue-300 font-semibold">R8,000 – R25,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="agent-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-cyan-400"><i class="fas fa-file-invoice"></i></div>
+                        <span class="agent-badge">Ready to Deploy</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Operations & Admin Agent</h3>
+                    <p class="text-gray-400 text-sm">Monitors emails, extracts data from PDFs/invoices, updates CRMs, and eliminates manual back-office errors.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="tech-tag">Email Parsing</span>
+                        <span class="tech-tag">Document Extraction</span>
+                        <span class="tech-tag">CRM Integration</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-blue-300 font-semibold">R10,000 – R30,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="agent-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-cyan-400"><i class="fas fa-brain"></i></div>
+                        <span class="agent-badge">Ready to Deploy</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Knowledge Base Brain</h3>
+                    <p class="text-gray-400 text-sm">Train an AI on your manuals, compliance files, and company data. Your team gets instant answers from internal knowledge.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="tech-tag">Document Q&A</span>
+                        <span class="tech-tag">Policy Checking</span>
+                        <span class="tech-tag">Internal Search</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-blue-300 font-semibold">R12,000 – R35,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="agent-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-cyan-400"><i class="fas fa-users"></i></div>
+                        <span class="agent-badge">Ready to Deploy</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">HR & Recruitment Agent</h3>
+                    <p class="text-gray-400 text-sm">Automates resume screening, interview scheduling, onboarding checklists, and employee queries.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="tech-tag">Resume Parsing</span>
+                        <span class="tech-tag">Scheduling</span>
+                        <span class="tech-tag">Onboarding</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-blue-300 font-semibold">R10,000 – R30,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="agent-card rounded-2xl p-6 card-hover border-2 border-cyan-500/30 bg-gradient-to-b from-[#0f1a2f] to-[#0a1022]">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-cyan-400"><i class="fas fa-cogs"></i></div>
+                        <span class="agent-badge bg-cyan-500/20 text-cyan-300">Popular</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Custom AI Agent</h3>
+                    <p class="text-gray-400 text-sm">A bespoke AI agent built specifically for your business need. We design it from the ground up to solve your unique challenge.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="tech-tag">Fully Custom</span>
+                        <span class="tech-tag">Any Industry</span>
+                        <span class="tech-tag">Complete Control</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-blue-300 font-semibold">R15,000 – R45,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="agent-card rounded-2xl p-6 card-hover bg-[#0f182c] border border-gray-700/50">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-gray-500"><i class="fas fa-robot"></i></div>
+                        <span class="agent-badge bg-gray-500/20 text-gray-400">Coming Soon</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Custom Agent (Your Idea)</h3>
+                    <p class="text-gray-400 text-sm">Have a specific AI agent in mind? Tell us your idea and we'll build it. No challenge is too unique.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="tech-tag">Bespoke</span>
+                        <span class="tech-tag">Innovative</span>
+                        <span class="tech-tag">Scalable</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-blue-300 font-semibold">Custom Quote</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Talk to Us →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflows Section -->
+    <section id="workflows" class="py-24 px-6 bg-[#0c1222]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold">Intelligent <span class="text-yellow-400">Workflows</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Connect AI agents together to automate complete business processes from start to finish</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="workflow-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-yellow-400"><i class="fas fa-funnel-dollar"></i></div>
+                        <span class="workflow-badge">End-to-End</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Lead-to-Customer Workflow</h3>
+                    <p class="text-gray-400 text-sm">Automatically capture leads, qualify them, send follow-ups, and update your CRM — all without human intervention.</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="tech-tag">Lead Capture</span>
+                        <span class="tech-tag">CRM Sync</span>
+                        <span class="tech-tag">Email Automation</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-yellow-400 font-semibold">From R30,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="workflow-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-yellow-400"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <span class="workflow-badge">End-to-End</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Invoice-to-Payment Workflow</h3>
+                    <p class="text-gray-400 text-sm">Incoming invoices are read by AI, validated against POs, routed for approval, and synced with accounting software.</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="tech-tag">Invoice Parsing</span>
+                        <span class="tech-tag">Approval Routing</span>
+                        <span class="tech-tag">Accounting Sync</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-yellow-400 font-semibold">From R40,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="workflow-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-yellow-400"><i class="fas fa-ticket-alt"></i></div>
+                        <span class="workflow-badge">End-to-End</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Support Ticket Workflow</h3>
+                    <p class="text-gray-400 text-sm">Customer support emails are read by AI, categorized, prioritized, and either resolved automatically or routed to the right human agent.</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="tech-tag">Email Classification</span>
+                        <span class="tech-tag">Auto-Resolution</span>
+                        <span class="tech-tag">Smart Routing</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-yellow-400 font-semibold">From R35,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="workflow-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-yellow-400"><i class="fas fa-user-plus"></i></div>
+                        <span class="workflow-badge">End-to-End</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Employee Onboarding Workflow</h3>
+                    <p class="text-gray-400 text-sm">New hires are automatically given access to systems, assigned training, and walked through onboarding checklists by an AI assistant.</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="tech-tag">Access Provisioning</span>
+                        <span class="tech-tag">Training Assignment</span>
+                        <span class="tech-tag">Progress Tracking</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-yellow-400 font-semibold">From R30,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="workflow-card rounded-2xl p-6 card-hover border-2 border-yellow-400/30 bg-gradient-to-b from-[#0e1a2f] to-[#091020]">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-yellow-400"><i class="fas fa-project-diagram"></i></div>
+                        <span class="workflow-badge bg-yellow-400/20 text-yellow-300">Popular</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Custom Workflow</h3>
+                    <p class="text-gray-400 text-sm">We design and build an end-to-end automation for your specific business process. No workflow is too complex.</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="tech-tag">Bespoke</span>
+                        <span class="tech-tag">Multi-System</span>
+                        <span class="tech-tag">AI-Powered</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-yellow-400 font-semibold">Custom Quote</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+
+                <div class="workflow-card rounded-2xl p-6 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-5xl text-yellow-400"><i class="fas fa-sync-alt"></i></div>
+                        <span class="workflow-badge">Integration</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">System Integration Workflow</h3>
+                    <p class="text-gray-400 text-sm">Connect your existing tools (CRM, ERP, accounting, email) into a seamless automated workflow with AI at the center.</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="tech-tag">API Integration</span>
+                        <span class="tech-tag">Data Sync</span>
+                        <span class="tech-tag">Unified Platform</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
+                        <span class="text-yellow-400 font-semibold">From R25,000</span>
+                        <a href="#contact" class="text-blue-400 text-sm hover:text-blue-300">Build Yours →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="howitworks" class="py-24 px-6 bg-[#0a0f1f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold">How <span class="text-[#2A9DF4]">It Works</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Three simple steps to deploy your AI agents and intelligent workflows</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4 text-3xl text-[#2A9DF4] border border-blue-400/30">1</div>
+                    <h3 class="text-xl font-bold mb-2">Discovery & Scoping</h3>
+                    <p class="text-gray-400">We audit your workflows, identify automation opportunities, and deliver a detailed blueprint with clear ROI projections.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4 text-3xl text-[#2A9DF4] border border-blue-400/30">2</div>
+                    <h3 class="text-xl font-bold mb-2">Build & Train</h3>
+                    <p class="text-gray-400">We develop your custom AI agent, train it on your data, build your workflow, and integrate seamlessly into your existing tools.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4 text-3xl text-[#2A9DF4] border border-blue-400/30">3</div>
+                    <h3 class="text-xl font-bold mb-2">Deploy & Optimize</h3>
+                    <p class="text-gray-400">Your AI agents and workflows go live. We monitor performance and continuously improve based on real-world usage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services (Full Service List) -->
+    <section id="services" class="py-24 px-6 bg-[#0c1222]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold">Complete <span class="text-[#2A9DF4]">Service List</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Everything you need to deploy AI agents and intelligent workflows</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
+                        <i class="fas fa-search text-blue-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">AI Scoping & Consultation</h4>
+                    <p class="text-gray-400 text-sm">Comprehensive audit of your business processes. Delivers a 20+ page blueprint with ROI projections and proof-of-concept demo.</p>
+                    <div class="mt-4 text-blue-300 font-semibold">From R3,500</div>
+                </div>
+
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
+                        <i class="fas fa-broom text-blue-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Data Preparation</h4>
+                    <p class="text-gray-400 text-sm">Clean, structure, and prepare your data for AI applications. Many AI projects fail because of "dirty" data.</p>
+                    <div class="mt-4 text-blue-300 font-semibold">From R6,000</div>
+                </div>
+
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-blue-500/20 px-3 py-1 rounded-full text-xs text-blue-300">Discovery</span>
+                        <i class="fas fa-chalkboard-teacher text-blue-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">AI Upskilling Workshops</h4>
+                    <p class="text-gray-400 text-sm">Half-day or full-day sessions teaching your team how to use AI tools effectively in their specific roles.</p>
+                    <div class="mt-4 text-blue-300 font-semibold">From R5,000/session</div>
+                </div>
+
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-cyan-500/20 px-3 py-1 rounded-full text-xs text-cyan-300">AI Agents</span>
+                        <i class="fas fa-robot text-cyan-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Custom AI Agent Build</h4>
+                    <p class="text-gray-400 text-sm">Build a specific "Digital Worker" for your business: Customer Experience, Operations & Admin, Knowledge Base, or HR.</p>
+                    <div class="mt-4 text-cyan-300 font-semibold">R8,000 – R45,000</div>
+                </div>
+
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-yellow-500/20 px-3 py-1 rounded-full text-xs text-yellow-300">Workflows</span>
+                        <i class="fas fa-cogs text-yellow-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">End-to-End Automation</h4>
+                    <p class="text-gray-400 text-sm">Complete workflow automation—from lead capture to CRM update, from invoice to payment, from ticket to resolution.</p>
+                    <div class="mt-4 text-yellow-300 font-semibold">Custom Quote (R50,000+)</div>
+                </div>
+
+                <div class="service-card rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-purple-500/20 px-3 py-1 rounded-full text-xs text-purple-300">Scale</span>
+                        <i class="fas fa-handshake text-purple-400"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">AI-as-a-Service Retainer</h4>
+                    <p class="text-gray-400 text-sm">Dedicated AI specialist, continuous optimization, priority feature development, and SLA-backed support.</p>
+                    <div class="mt-4 text-purple-300 font-semibold">From R8,500/mo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-24 px-6 bg-[#0a0f1f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold">Our <span class="text-[#2A9DF4]">Portfolio</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Proof of capability—AI agents and workflows we've already built</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="text-xl font-bold">Orbit-AI</h4>
+                            <div class="flex gap-2 mt-1">
+                                <span class="tech-tag">AI Agent</span>
+                                <span class="tech-tag">Workflow</span>
+                            </div>
+                        </div>
+                        <span class="tech-tag">Prototype</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">AI-powered project management platform with intelligent task prioritization, predictive timeline analysis, and smart workflow automation.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LangChain</span>
+                    </div>
+                    <a href="https://github.com/LesediTlhapane/Orbit-Ai-" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> View on GitHub →</a>
+                </div>
+
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="text-xl font-bold">Leave Management System</h4>
+                            <div class="flex gap-2 mt-1">
+                                <span class="tech-tag">AI Agent</span>
+                                <span class="tech-tag">Workflow</span>
+                            </div>
+                        </div>
+                        <span class="tech-tag">Prototype</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Full-stack HR solution with AI features for smart request processing, automated workflow, and predictive calendar management.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://github.com/LesediTlhapane/Leave-Management-System-Mobile-Application" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> Mobile →</a>
+                        <a href="https://github.com/LesediTlhapane/Leave_Management_system-" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> Admin →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="text-xl font-bold">AI Discovery Stack</h4>
+                            <div class="flex gap-2 mt-1">
+                                <span class="tech-tag">AI Platform</span>
+                            </div>
+                        </div>
+                        <span class="tech-tag">Live Demo</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">A comprehensive platform to explore and showcase AI capabilities, demonstrating proficiency with modern TypeScript frameworks.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Vercel</span>
+                    </div>
+                    <a href="https://github.com/LesediTlhapane/ai-discovery-stack" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> View on GitHub →</a>
+                </div>
+
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="text-xl font-bold">Wellness Chatbot</h4>
+                            <div class="flex gap-2 mt-1">
+                                <span class="tech-tag">AI Agent</span>
+                            </div>
+                        </div>
+                        <span class="tech-tag">Live Demo</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">An interactive conversational AI agent focused on wellness, showcasing natural language understanding and empathetic response generation.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">AI APIs</span>
+                    </div>
+                    <a href="https://supatechintel.app.n8n.cloud/webhook/e64d38c2-7bfb-41a2-8c23-3cc036b1f036/chat" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fas fa-external-link-alt mr-1"></i> Try Demo →</a>
+                </div>
+            </div>
+
+            <!-- Web Projects Sub-section -->
+            <h3 class="text-2xl font-semibold text-blue-300 mt-12 mb-6">Web & Application Projects</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="text-xl font-bold">Trolie Forward Movement</h4>
+                        <span class="tech-tag">Client Project</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Fully functional e-commerce platform with payment processing and inventory management.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                    <a href="https://github.com/LesediTlhapane/trolie-forward-movement" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> View on GitHub →</a>
+                </div>
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="text-xl font-bold">Clean Sole Haven</h4>
+                        <span class="tech-tag">Client Project</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Professional business website optimized for lead generation and brand presence.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/LesediTlhapane/clean-sole-haven" target="_blank" class="text-blue-400 text-sm hover:text-blue-300"><i class="fab fa-github mr-1"></i> View on GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="techstack" class="py-24 px-6 bg-[#0c1222]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold">Our <span class="text-[#2A9DF4]">Technology Stack</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Modern, flexible tools for building AI agents and intelligent workflows</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fab fa-python text-4xl text-blue-400 mb-3"></i>
+                    <h4 class="font-semibold">Python</h4>
+                    <p class="text-gray-500 text-sm">Core AI & Backend</p>
+                </div>
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fab fa-react text-4xl text-cyan-400 mb-3"></i>
+                    <h4 class="font-semibold">React & React Native</h4>
+                    <p class="text-gray-500 text-sm">Frontend & Mobile Apps</p>
+                </div>
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fas fa-brain text-4xl text-purple-400 mb-3"></i>
+                    <h4 class="font-semibold">LangChain / LlamaIndex</h4>
+                    <p class="text-gray-500 text-sm">AI Agent Frameworks</p>
+                </div>
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fas fa-cloud text-4xl text-orange-400 mb-3"></i>
+                    <h4 class="font-semibold">AWS / Azure / GCP</h4>
+                    <p class="text-gray-500 text-sm">Cloud Infrastructure</p>
+                </div>
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fas fa-database text-4xl text-green-400 mb-3"></i>
+                    <h4 class="font-semibold">PostgreSQL / Supabase</h4>
+                    <p class="text-gray-500 text-sm">Data Storage</p>
+                </div>
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fas fa-vector-square text-4xl text-yellow-400 mb-3"></i>
+                    <h4 class="font-semibold">Vector Databases</h4>
+                    <p class="text-gray-500 text-sm">Pinecone, Weaviate</p>
+                </div>
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fab fa-docker text-4xl text-blue-500 mb-3"></i>
+                    <h4 class="font-semibold">Docker</h4>
+                    <p class="text-gray-500 text-sm">Containerization</p>
+                </div>
+                <div class="bg-[#0f182c] p-6 rounded-2xl text-center border border-gray-800">
+                    <i class="fas fa-cogs text-4xl text-yellow-500 mb-3"></i>
+                    <h4 class="font-semibold">n8n</h4>
+                    <p class="text-gray-500 text-sm">Workflow Automation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-24 px-6 bg-gradient-to-br from-[#0a1022] to-[#0d1428]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <div class="md:w-1/3 flex justify-center">
+                <div class="relative w-64 h-64 md:w-72 md:h-72 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-1 shadow-2xl">
+                    <div class="w-full h-full rounded-full bg-[#111c30] flex items-center justify-center overflow-hidden border-4 border-white/10">
+                        <i class="fas fa-user-tie text-8xl text-blue-300"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-2/3 space-y-5">
+                <div class="inline-flex flex-wrap gap-2">
+                    <span class="px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm"><i class="fas fa-map-marker-alt mr-1"></i> Pretoria, SA</span>
+                    <span class="px-4 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm"><i class="fas fa-graduation-cap mr-1"></i> eStudy AI Incubation — Current Cohort</span>
+                </div>
+                <h2 class="text-4xl font-bold">Lesedi Tlhapane <span class="text-[#2A9DF4]">| AI Technical Specialist</span></h2>
+                <p class="text-gray-300 text-lg leading-relaxed">
+                    Currently selected for the <strong class="text-white">eStudy AI Entrepreneurship Incubation Programme</strong> — a 12-month sponsored journey building commercially viable AI agents and intelligent workflows. I retain full IP rights and am actively deploying production-ready automation for clients.
+                </p>
+                <p class="text-gray-300">
+                    My mission: help African businesses harness autonomous AI agents and intelligent workflows that handle repetitive cognitive work, freeing your team for strategic growth.
+                </p>
+                <div class="flex flex-wrap gap-3 pt-3">
+                    <span class="bg-[#1e2a48] px-4 py-2 rounded-full text-sm flex items-center gap-2"><i class="fas fa-phone-alt text-green-400"></i> 084-833-7335</span>
+                    <span class="bg-[#1e2a48] px-4 py-2 rounded-full text-sm flex items-center gap-2"><i class="fas fa-envelope text-blue-400"></i> auratechintel@outlook.com</span>
+                    <span class="bg-[#1e2a48] px-4 py-2 rounded-full text-sm flex items-center gap-2"><i class="fab fa-linkedin text-blue-400"></i> /in/lesedi-tlhapane</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-6 bg-[#0a0f1f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold">Flexible <span class="text-[#2A9DF4]">Engagement Models</span></h2>
+                <p class="text-gray-400 mt-3">How we work together — from discovery to deployment to ongoing partnership</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <div class="rounded-2xl p-7 transition-all duration-300 flex flex-col h-full border border-gray-800 bg-[#0e1628] hover:shadow-2xl">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold">AI Scoping & Consultation</h3>
+                        <div class="text-3xl font-extrabold mt-3 text-white">From R3,500</div>
+                        <div class="h-px bg-gray-700 my-5"></div>
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Audit current business processes</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Identify automation opportunities</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Deliverable: 20+ page blueprint</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Proof-of-concept demo</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Actionable ROI roadmap</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6">
+                        <a href="#contact" class="block text-center py-3 rounded-xl font-semibold transition border border-blue-500 text-white hover:bg-blue-500/20">Book Scoping Call</a>
+                    </div>
+                </div>
+                <div class="rounded-2xl p-7 transition-all duration-300 flex flex-col h-full pricing-popular relative border-2 border-cyan-500/70 bg-gradient-to-b from-[#0f1a2f] to-[#0a1022] hover:shadow-2xl">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-cyan-500 text-black text-xs font-bold px-4 py-1 rounded-full"><i class="fas fa-star mr-1"></i> Most Popular</div>
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold">Custom Agent + Workflow</h3>
+                        <div class="text-3xl font-extrabold mt-3 text-white">R8,000 – R45,000</div>
+                        <div class="h-px bg-gray-700 my-5"></div>
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Custom AI agent development</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Intelligent workflow automation</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Integration with your tools</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Testing & validation phase</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> 30-day post-launch support</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6">
+                        <a href="#contact" class="block text-center py-3 rounded-xl font-semibold transition bg-[#2A9DF4] hover:bg-blue-600 text-white shadow-md">Discuss Your Project</a>
+                    </div>
+                </div>
+                <div class="rounded-2xl p-7 transition-all duration-300 flex flex-col h-full border border-gray-800 bg-[#0e1628] hover:shadow-2xl">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold">AI-as-a-Service Retainer</h3>
+                        <div class="text-3xl font-extrabold mt-3 text-white">From R8,500/mo</div>
+                        <div class="h-px bg-gray-700 my-5"></div>
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Dedicated AI specialist</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Continuous model optimization</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Priority feature development</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> Monthly strategic review</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400 text-sm"></i> SLA & uptime guarantee</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6">
+                        <a href="#contact" class="block text-center py-3 rounded-xl font-semibold transition border border-blue-500 text-white hover:bg-blue-500/20">Start Retainer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-6 bg-[#0c1222]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold">Frequently Asked <span class="text-[#2A9DF4]">Questions</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="space-y-4">
+                <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
+                    <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
+                        What's the difference between an AI Agent and a Workflow?
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">An <strong>AI Agent</strong> is a digital worker that handles a specific task—like answering customer questions or processing invoices. A <strong>Workflow</strong> connects multiple agents and systems together to automate an entire business process—like taking a lead from website form to CRM to email sequence to sale. We build both, and they work together to create a fully autonomous digital workforce.</p>
+                </details>
+                <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
+                    <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
+                        Do I need technical knowledge to use AI agents or workflows?
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">Not at all. Once deployed, your team interacts with the AI through simple chat interfaces or dashboard views. We handle all the technical setup, integration, and ongoing maintenance.</p>
+                </details>
+                <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
+                    <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
+                        Who owns the AI agent and workflow after I pay?
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">You do. You retain full ownership of any custom AI agent or workflow built for your business. We retain the right to reuse core technology patterns, but your specific configuration and data remain yours.</p>
+                </details>
+                <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
+                    <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
+                        How long does it take to build an AI agent or workflow?
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">Simple agents take 2-3 weeks. Complex agents with workflows and multiple integrations take 4-6 weeks. The scoping consultation gives you an exact timeline.</p>
+                </details>
+                <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
+                    <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
+                        Can I try an agent or workflow before committing?
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">Yes. The AI Scoping & Consultation includes a proof-of-concept demo showing exactly how an AI agent or workflow would work in your specific business before you commit to a full build.</p>
+                </details>
+                <details class="group bg-[#0f182c] rounded-xl border border-gray-800 p-5 cursor-pointer">
+                    <summary class="font-semibold text-lg text-white list-none flex justify-between items-center">
+                        What industries do you work with?
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition-transform text-blue-400"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-400 pl-2 border-l-2 border-blue-500">We work across industries—professional services, real estate, e-commerce, education, HR, manufacturing, and more. Our agents and workflows are customized to your specific processes, regardless of industry.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 px-6 bg-gradient-to-b from-[#0c1224] to-[#080e1c]">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold">Let's <span class="text-[#2A9DF4]">Build Your AI Agent</span></h2>
+                <p class="text-gray-400 mt-2">Tell me about your business challenge — I'll design an autonomous solution.</p>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2 space-y-6">
+                    <div class="bg-[#0f182c] p-6 rounded-2xl border border-blue-900/40">
+                        <div class="flex items-center gap-4"><i class="fab fa-whatsapp text-3xl text-green-400"></i> <span class="text-xl">084-833-7335</span></div>
+                        <div class="flex items-center gap-4 mt-4"><i class="fab fa-linkedin text-3xl text-sky-400"></i> <span>linkedin.com/in/lesedi-tlhapane</span></div>
+                        <div class="flex items-center gap-4 mt-4"><i class="fas fa-envelope text-3xl text-blue-300"></i> <span>auratechintel@outlook.com</span></div>
+                        <div class="mt-6 pt-4 border-t border-gray-700 flex items-center gap-2"><i class="fas fa-map-pin text-blue-400"></i> Pretoria, Gauteng, South Africa</div>
+                    </div>
+                    <div class="bg-[#0a1122] p-5 rounded-xl border border-blue-800/30">
+                        <p class="italic text-gray-300">"Lesedi built a custom AI agent that handles our customer inquiries 24/7 — we've saved over 20 hours per week." — Real client (name withheld for privacy)</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <form id="contactForm" class="bg-[#0f182c] p-7 rounded-2xl border border-gray-800">
+                        <div class="grid grid-cols-1 gap-5">
+                            <input type="text" name="name" placeholder="Full Name" required class="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white" />
+                            <input type="email" name="email" placeholder="Email Address" required class="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white" />
+                            <input type="tel" name="phone" placeholder="Phone Number" class="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white" />
+                            <textarea rows="4" name="message" placeholder="Which AI agent or workflow interests you? What challenge are you facing?" required class="w-full bg-[#0a1122] border border-gray-700 rounded-lg px-4 py-3 text-white"></textarea>
+                            <button type="submit" class="bg-[#2A9DF4] hover:bg-[#1f7bc0] py-3 rounded-xl font-bold text-white transition-all flex items-center justify-center gap-2"><i class="fas fa-paper-plane"></i> Send & Get AI Blueprint</button>
+                            <div id="formSuccess" class="hidden text-green-400 text-center text-sm">✓ Message sent! Lesedi will reply within 24h via WhatsApp or email.</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050a15] py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+            <div>© 2025 Aura Tech Intelligence. All rights reserved.</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-blue-300"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/lesedi-tlhapane" target="_blank" class="hover:text-blue-300"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/LesediTlhapane" target="_blank" class="hover:text-blue-300"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="text-xs">🤖 AI Agents + Workflows • Pretoria • eStudy Incubation</div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div id="chatWindow" class="chat-window">
+            <div class="chat-header flex justify-between items-center">
+                <span><i class="fas fa-robot mr-2"></i> Aura AI Assistant</span>
+                <i id="closeChat" class="fas fa-times cursor-pointer hover:text-red-400"></i>
+            </div>
+            <div id="chatMessages" class="chat-messages">
+                <div class="message-bot">👋 Hi! I'm Aura Assistant — an AI agent built by Lesedi. Ask me about our AI agents, intelligent workflows, pricing, or how we can automate your business!</div>
+            </div>
+            <div class="chat-input-area">
+                <input id="chatInput" type="text" placeholder="Ask about AI agents, workflows..." />
+                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <div id="chatButton" class="chat-button">
+            <i class="fas fa-comment-dots text-white text-2xl"></i>
+        </div>
+    </div>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('nav-blur');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('nav-blur');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.add('hidden');
+                const icon = document.querySelector('#mobileMenuBtn i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Chat widget toggle
+        const chatButton = document.getElementById('chatButton');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+
+        chatButton.addEventListener('click', function() {
+            chatWindow.classList.toggle('open');
+        });
+
+        closeChat.addEventListener('click', function() {
+            chatWindow.classList.remove('open');
+        });
+
+        // Chat functionality
+        const chatInput = document.getElementById('chatInput');
+        const sendChat = document.getElementById('sendChat');
+        const chatMessages = document.getElementById('chatMessages');
+
+        function getBotResponse(message) {
+            const msg = message.toLowerCase();
+            if (msg.match(/agent|agents|digital worker|bot|chatbot|what agents/)) {
+                return "🤖 We build 5 types of AI Agents:\n\n1️⃣ Customer Experience Agent - 24/7 support, appointment booking (R8,000 - R25,000)\n2️⃣ Operations & Admin Agent - Email parsing, document extraction, CRM update (R10,000 - R30,000)\n3️⃣ Knowledge Base Brain - Internal Q&A on your company data (R12,000 - R35,000)\n4️⃣ HR & Recruitment Agent - Resume screening, scheduling, onboarding (R10,000 - R30,000)\n5️⃣ Custom Agent - Built for your specific need (R15,000 - R45,000)\n\nWhich one interests you?";
+            } else if (msg.match(/workflow|workflows|automation|process|end-to-end|pipeline/)) {
+                return "⚙️ We build Intelligent Workflows that connect multiple agents and systems:\n\n• Lead-to-Customer Workflow (From R30,000)\n• Invoice-to-Payment Workflow (From R40,000)\n• Support Ticket Workflow (From R35,000)\n• Employee Onboarding Workflow (From R30,000)\n• Custom Workflow (Custom Quote)\n\nWe automate your entire process from start to finish!";
+            } else if (msg.match(/price|cost|how much|pricing|fee|expensive/)) {
+                return "💰 Our pricing:\n\n🔄 Workflows: From R30,000 - R50,000+\n🤖 AI Agents: R8,000 - R45,000\n📋 Scoping & Consultation: From R3,500\n📊 AI-as-a-Service Retainer: From R8,500/month\n📈 Strategy Advisory: From R15,000/month\n\nWant a custom quote? Contact Lesedi at 084-833-7335!";
+            } else if (msg.match(/lesedi|founder|who are you|about you|background/)) {
+                return "🧠 Lesedi Tlhapane is an AI Technical Specialist based in Pretoria, currently in the eStudy AI Incubation Programme. He builds custom AI agents and intelligent workflows for South African businesses.\n\n🎓 Qualifications: Degree in Software Development / IT / Data Science\n🚀 Projects: Orbit-AI (Project Management), Leave Management System with AI, AI Discovery Stack, and more.\n📱 Contact: 084-833-7335";
+            } else if (msg.match(/contact|reach|call|email|whatsapp|phone|get in touch/)) {
+                return "📬 You can reach Lesedi directly:\n\n• Phone/WhatsApp: 084-833-7335\n• Email: auratechintel@outlook.com\n• LinkedIn: linkedin.com/in/lesedi-tlhapane\n\nOr fill out the contact form above!";
+            } else if (msg.match(/portfolio|projects|work|done|built|examples/)) {
+                return "📁 Here are some of our projects:\n\n🤖 Orbit-AI: AI-powered project management (Agent + Workflow)\n🏢 Leave Management System: HR automation with AI (Agent + Workflow)\n🔍 AI Discovery Stack: AI capabilities showcase\n💬 Wellness Chatbot: Conversational AI agent\n🛒 Trolie Forward Movement: E-commerce platform\n👟 Clean Sole Haven: Business website\n\nAll projects are on GitHub: github.com/LesediTlhapane";
+            } else if (msg.match(/tech|stack|software|tools|technology/)) {
+                return "⚙️ Our technology stack includes:\n\n• Python (Core AI & Backend)\n• React / React Native (Frontend & Mobile)\n• LangChain / LlamaIndex (AI Agent Frameworks)\n• n8n (Workflow Automation)\n• AWS / Azure / GCP (Cloud)\n• PostgreSQL / Supabase (Data)\n• Docker (Containerization)\n• TypeScript / Node.js\n\nWe use the right tools for each project.";
+            } else {
+                return "Thanks for your message! I'm here to help. You can ask me about:\n\n• AI Agents (digital workers)\n• Workflows (process automation)\n• Pricing\n• Portfolio\n• Technology Stack\n\nFor immediate assistance, WhatsApp Lesedi at 084-833-7335 or email auratechintel@outlook.com.";
+            }
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message-user';
+            userDiv.textContent = message;
+            chatMessages.appendChild(userDiv);
+
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate typing and response
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message-bot';
+                botDiv.textContent = response;
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+
+        sendChat.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            formData.append('access_key', '965456bd-86bd-466c-bddd-f06d6cf429ec');
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (result.success) {
+                    document.getElementById('formSuccess').classList.remove('hidden');
+                    this.reset();
+                    setTimeout(() => {
+                        document.getElementById('formSuccess').classList.add('hidden');
+                    }, 5000);
+                } else {
+                    alert('Form error. Please WhatsApp 084-833-7335');
+                }
+            } catch (err) {
+                alert('Network issue. Please WhatsApp 084-833-7335');
+            }
+        });
+
+        // Fade-up animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
