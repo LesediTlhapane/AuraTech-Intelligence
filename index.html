@@ -144,7 +144,15 @@
     .bg-hero-image::before { content: ''; position: absolute; inset: 0; background-image: url('home.png'); background-size: cover; background-position: center; z-index: 0; pointer-events: none; }
     .theme-toggle { cursor: pointer; padding: 8px 14px; border-radius: 40px; transition: all 0.3s; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; }
     .about-card { border-radius: 1.5rem; padding: 2rem; border: 1px solid; }
-    @media (max-width: 768px) { .chat-window { width: 320px; right:0; bottom:70px; } .brand-logo-img { max-height: 50px; } .profile-img { width: 150px; height: 150px; } }
+    
+    /* --- Logo wordmark styles --- */
+    .logo-wordmark { display: flex; flex-direction: column; line-height: 1; }
+    .logo-wordmark .aura { font-family: 'Space Grotesk', monospace; font-weight: 700; font-size: 1.35rem; letter-spacing: -0.02em; background: linear-gradient(135deg, #FFFFFF 0%, #16C5D8 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .logo-wordmark .intel { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: #16C5D8; margin-top: -2px; opacity: 0.85; }
+    body.light .logo-wordmark .aura { background: linear-gradient(135deg, #0f172a 0%, #16C5D8 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    body.light .logo-wordmark .intel { color: #16C5D8; }
+
+    @media (max-width: 768px) { .chat-window { width: 320px; right:0; bottom:70px; } .brand-logo-img { max-height: 50px; } .profile-img { width: 150px; height: 150px; } .logo-wordmark .aura { font-size: 1.1rem; } .logo-wordmark .intel { font-size: 0.55rem; } }
   </style>
 </head>
 <body class="dark">
@@ -152,9 +160,12 @@
 <!-- Navigation -->
 <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 nav-blur">
   <div class="max-w-7xl mx-auto px-6 md:px-10 py-4 flex justify-between items-center">
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
       <img src="brandlogo.png" alt="Aura Tech Intelligence" class="brand-logo-img" />
-      <span class="text-sm font-semibold text-cyan-600 tracking-wider hidden sm:inline">INTELLIGENCE</span>
+      <div class="logo-wordmark">
+        <span class="aura">AURA-TECH</span>
+        <span class="intel">INTELLIGENCE</span>
+      </div>
     </div>
     <div class="flex items-center gap-4">
       <div class="hidden md:flex space-x-6 text-sm font-medium">
@@ -687,7 +698,6 @@
   themeToggle.addEventListener('click', function() {
     darkMode = !darkMode;
     document.body.classList.toggle('light', !darkMode);
-    // update icon and label
     if (darkMode) {
       themeIcon.className = 'fas fa-sun';
       themeLabel.textContent = 'Light';
